@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding=”utf-8”?>
+<module>
+	<type>extension</type>
+	<name>MechanicsPortal</name>
+	<label>Mechanics Portal</label>
+	<parent>Tools</parent>
+	<version>0.1</version>
+	<dependencies>
+		<vtiger_version>5.8.0</vtiger_version>
+	</dependencies>
+</module>
