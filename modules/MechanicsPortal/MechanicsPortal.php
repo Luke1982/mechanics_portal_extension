@@ -41,6 +41,10 @@ Class MechanicsPortal {
 		rename('modules/MechanicsPortal/resources/templates/WorkSheet_edit.tpl', 'Smarty/templates/modules/SalesOrder/WorkSheet_edit.tpl');
 		rename('modules/MechanicsPortal/resources/templates/WorkSheet_detail.tpl', 'Smarty/templates/modules/SalesOrder/WorkSheet_detail.tpl');
 
+		// Add a column in the salesorders table
+		global $adb;
+		$adb->pquery("ALTER TABLE `vtiger_salesorder` ADD `worksheet_html` MEDIUMBLOB NOT NULL");
+
 	}
 
 	/*
