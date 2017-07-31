@@ -10,8 +10,7 @@ Class MechanicsPortal {
 	function vtlib_handler($modulename, $event_type) {
 		if($event_type == 'module.postinstall') {
 
-			// Set module relations to SalesOrders
-			$this->setSalesOrderRelations();
+			$this->installWorkSheetBlock();
 
 		} else if($event_type == 'module.disabled') {
 			// TODO Handle actions when this module is disabled.
@@ -26,18 +25,42 @@ Class MechanicsPortal {
 		}
 	}
 
-	private function setSalesOrderRelations() {
+	private function installWorkSheetBlock() {
 
 		include_once('vtlib/Vtiger/Module.php');
 
-		$so_instance = Vtiger_Module::getInstance('SalesOrder');
+		$modname = 'SalesOrder';
+		$module = Vtiger_Module::getInstance($modname);
+		$block = new Vtiger_Block();
+		$block->label = 'WorkSheet';
+		$block->sequence = 2;
+		$block->sequence = 2;
+		$module->addBlock($block);
 
-		$so_instance->setRelatedList(
-			Vtiger_Module::getInstance('HelpDesk'),
-			'Tickets',
-			Array('ADD','SELECT')
-		);
+		rename('modules/MechanicsPortal/resources/templates/WorkSheet_edit.tpl', 'Smarty/templates/modules/SalesOrder/WorkSheet_edit.tpl');
+		rename('modules/MechanicsPortal/resources/templates/WorkSheet_detail.tpl', 'Smarty/templates/modules/SalesOrder/WorkSheet_detail.tpl');
 
-	}	
+	}
+
+	/*
+	 * Creates a custom webservice operation for this module
+	 */
+	private function createWebServiceOperation() {
+		require_once('include/Webservices/Utils.php');
+		$operation = array(
+						'name'		=> 'createWorkSheetHTML',
+						'include'	=> 'modules/MechanicsPortal/resources/handlers/createWorkSheetHTML.php',
+						'handler'	=> 'createWorkSheetHTML',
+						'prelogin'	=> 0,
+						'type'		=> 'POST',		
+						'parameters' => array(
+								array('name' => 'id', 'type' =>	'String'),
+								array('name' => 'autograph', 'type' =>	'String'),
+								array('name' => 'lines', 'type' =>	'Encoded')
+						)
+					);
+		registerWSAPI($operation);		
+	}
+
 
 }
