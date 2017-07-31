@@ -11,6 +11,7 @@ Class MechanicsPortal {
 		if($event_type == 'module.postinstall') {
 
 			$this->installWorkSheetBlock();
+			$this->createWebServiceOperation();
 
 		} else if($event_type == 'module.disabled') {
 			// TODO Handle actions when this module is disabled.
