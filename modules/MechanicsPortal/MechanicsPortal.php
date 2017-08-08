@@ -59,9 +59,11 @@ Class MechanicsPortal {
 						'prelogin'	=> 0,
 						'type'		=> 'POST',		
 						'parameters' => array(
-								array('name' => 'id', 'type' =>	'String'),
-								array('name' => 'autograph', 'type' =>	'String'),
-								array('name' => 'lines', 'type' =>	'Encoded')
+								array('name' => 'id', 			'type' => 'String'),
+								array('name' => 'autograph', 	'type' => 'String'),
+								array('name' => 'lines', 		'type' => 'Encoded'),
+								array('name' => 'autogr_name', 	'type' => 'String'),
+								array('name' => 'times', 		'type' => 'Encoded')
 						)
 					);
 		registerWSAPI($operation);		
