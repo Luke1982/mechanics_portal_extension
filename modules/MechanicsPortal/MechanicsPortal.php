@@ -21,6 +21,9 @@ Class MechanicsPortal {
 			// TODO Handle actions when this module is about to be deleted.
 		} else if($event_type == 'module.preupdate') {
 			// TODO Handle actions before this module is updated.
+			if (version_compare($moduleInstance->version, '0.2.0') == -1) {
+				createWSTicketComments();
+			}
 		} else if($event_type == 'module.postupdate') {
 			// TODO Handle actions after this module is updated.
 		}
@@ -64,6 +67,24 @@ Class MechanicsPortal {
 								array('name' => 'lines', 		'type' => 'Encoded'),
 								array('name' => 'autogr_name', 	'type' => 'String'),
 								array('name' => 'times', 		'type' => 'Encoded')
+						)
+					);
+		registerWSAPI($operation);		
+	}
+
+	/*
+	 * Creates a custom webservice operation for this module
+	 */
+	private function createWSTicketComments() {
+		require_once('include/Webservices/Utils.php');
+		$operation = array(
+						'name'		=> 'getRegularTicketComments',
+						'include'	=> 'modules/MechanicsPortal/resources/handlers/getRegularTicketComments.php',
+						'handler'	=> 'getRegularTicketComments',
+						'prelogin'	=> 0,
+						'type'		=> 'GET',		
+						'parameters' => array(
+								array('name' => 'id', 'type' => 'String')
 						)
 					);
 		registerWSAPI($operation);		
