@@ -22,7 +22,7 @@ Class MechanicsPortal {
 		} else if($event_type == 'module.preupdate') {
 			// TODO Handle actions before this module is updated.
 			if (version_compare($moduleInstance->version, '0.2.0') == -1) {
-				createWSTicketComments();
+				$this->createWSTicketComments();
 			}
 		} else if($event_type == 'module.postupdate') {
 			// TODO Handle actions after this module is updated.
