@@ -12,6 +12,7 @@ Class MechanicsPortal {
 
 			$this->installWorkSheetBlock();
 			$this->createWebServiceOperation();
+			$this->createWSTicketComments();
 
 		} else if($event_type == 'module.disabled') {
 			// TODO Handle actions when this module is disabled.
