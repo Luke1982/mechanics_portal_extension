@@ -44,6 +44,7 @@ Class MechanicsPortal {
 
 		rename('modules/MechanicsPortal/resources/templates/WorkSheet_edit.tpl', 'Smarty/templates/modules/SalesOrder/WorkSheet_edit.tpl');
 		rename('modules/MechanicsPortal/resources/templates/WorkSheet_detail.tpl', 'Smarty/templates/modules/SalesOrder/WorkSheet_detail.tpl');
+		rename('modules/MechanicsPortal/resources/templates/WorkSheet.tpl', 'Smarty/templates/modules/MechanicsPortal/WorkSheet.tpl');
 
 		// Add a column in the salesorders table
 		global $adb;
