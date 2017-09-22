@@ -25,6 +25,10 @@ Class MechanicsPortal {
 			if (version_compare($moduleInstance->version, '0.2.0') == -1) {
 				$this->createWSTicketComments();
 			}
+			if (version_compare($moduleInstance->version, '0.3.0') == -1) {
+				// Version 0.3 has a new version of this template file
+				rename('modules/MechanicsPortal/resources/templates/WorkSheet_detail.tpl', 'Smarty/templates/modules/SalesOrder/WorkSheet_detail.tpl');
+			}
 		} else if($event_type == 'module.postupdate') {
 			// TODO Handle actions after this module is updated.
 		}
