@@ -52,7 +52,7 @@ Class MechanicsPortal {
 
 		// Add a column in the salesorders table
 		global $adb;
-		$adb->pquery("ALTER TABLE `vtiger_salesorder` ADD `worksheet_html` MEDIUMBLOB NOT NULL");
+		$adb->pquery("ALTER TABLE `vtiger_salesorder` ADD `worksheet_html` MEDIUMBLOB NOT NULL DEFAULT NULL");
 
 	}
 
