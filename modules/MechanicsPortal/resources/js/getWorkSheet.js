@@ -15,23 +15,25 @@ function getWorkSheetPDF() {
 	var pdfButton = document.getElementById("create_worksheet_pdf");
 	var crmid = document.getElementsByName("record")[0].value;
 
-	pdfButton.addEventListener("click", function(e){
-		e.preventDefault();
-		// var filename  = document.getElementById("report_filename").innerHTML;		
+	if (pdfButton !== null) {
+		pdfButton.addEventListener("click", function(e){
+			e.preventDefault();
+			// var filename  = document.getElementById("report_filename").innerHTML;		
 
-		var r = new XMLHttpRequest();
-		r.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var response = JSON.parse(r.response);
-				presentFile(response.download_loc);
-				setTimeout(function(){
-					deleteFile(response.delete_loc);
-				},2000);				
+			var r = new XMLHttpRequest();
+			r.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var response = JSON.parse(r.response);
+					presentFile(response.download_loc);
+					setTimeout(function(){
+						deleteFile(response.delete_loc);
+					},2000);
+				}
 			}
-		}
-		r.open("GET", "index.php?module=MechanicsPortal&action=MechanicsPortalAjax&file=getWorkSheetPDF&soid=" + crmid, true);
-		r.send();		
-	});
+			r.open("GET", "index.php?module=MechanicsPortal&action=MechanicsPortalAjax&file=getWorkSheetPDF&soid=" + crmid, true);
+			r.send();
+		});
+	}
 }
 
 function deleteFile(file) {
